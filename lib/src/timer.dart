@@ -19,7 +19,7 @@ class FTimer {
   void startPeriodic(Duration duration, void callback(FTimer timer)) {
     assert(callback != null);
     cancel();
-    _timer = Timer.periodic(duration, (timer) {
+    _timer = Timer.periodic(duration, (t) {
       callback(this);
     });
   }
