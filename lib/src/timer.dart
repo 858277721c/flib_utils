@@ -2,9 +2,8 @@ import 'dart:async';
 
 class FTimer {
   Timer _timer;
-  bool _started = false;
 
-  bool get started => _started;
+  bool get isActive => _timer != null && _timer.isActive;
 
   /// 延迟执行
   void startDelayed(Duration duration, void callback()) {
@@ -14,7 +13,6 @@ class FTimer {
       cancel();
       callback();
     });
-    _started = true;
   }
 
   /// 间隔执行
@@ -24,7 +22,6 @@ class FTimer {
     _timer = Timer.periodic(duration, (timer) {
       callback(this);
     });
-    _started = true;
   }
 
   /// 取消定时器
@@ -33,6 +30,5 @@ class FTimer {
       _timer.cancel();
       _timer = null;
     }
-    _started = false;
   }
 }
